@@ -1,14 +1,15 @@
-import React, { useContext, useState } from 'react';
-import { TodoContext } from '../context/TodoContext';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addTodo } from '../redux/todoSlice';
 
 const AddTodo = () => {
-  const { addTodo } = useContext(TodoContext);
   const [text, setText] = useState('');
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (text.trim()) {
-      addTodo(text);
+      dispatch(addTodo(text));
       setText('');
     }
   };
